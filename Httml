@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Büyükannenin Gizli Kurabiye Dükkanı</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1 id="title">🍪 Kurabiye Oyunu</h1>
+<p id="cookies">Kurabiye: 0</p>
+<p id="message"></p>
+
+<button id="cookieBtn">🍪 BAS</button>
+
+<!-- 🏪 DÜKKAN -->
+<div id="shop">
+  <h2>🛒 Dükkan</h2>
+  <button onclick="buyChoco()">🍫 Çikolatalı (2x) - 50</button>
+  <button onclick="buyCaramel()">🍯 Karamelli (5x) - 200</button>
+  <button onclick="buyGolden()">🟡 Altın (10x) - 1000</button>
+  <button onclick="buyMega()">💥 Mega (50x) - 10000</button>
+  <button onclick="buyLegendary()">🌈 Efsanevi (500x) - 100000</button>
+  <button onclick="buyAuto()">⚡ Auto Click - 500</button>
+</div>
+
+<!-- 📻 RADYO -->
+<div id="radio" onclick="toggleMusic()">📻</div>
+
+<!-- 👵 JUMPSCARE -->
+<div id="jumpscare">👵</div>
+
+<!-- 🎵 MÜZİK -->
+<audio id="music" loop>
+  <source src="muzik.mp3" type="audio/mpeg">
+</audio>
+
+<script src="script.js"></script>
+</body>
+</html>
