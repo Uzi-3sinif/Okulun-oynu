@@ -1,0 +1,151 @@
+let cookies = 0;
+let clickPower = 1;
+let auto = false;
+let musicOn = false;
+
+let types = {
+  choco: false,
+  caramel: false,
+  golden: false,
+  mega: false,
+  legendary: false
+};
+
+let cookieText = document.getElementById("cookies");
+let title = document.getElementById("title");
+let message = document.getElementById("message");
+let music = document.getElementById("music");
+
+// 🍪 BASMA
+document.getElementById("cookieBtn").onclick = (e) => {
+  e.stopPropagation();
+  cookies += clickPower;
+  update();
+
+  if (Math.random() < 0.08) {
+    jumpscare();
+  }
+};
+
+// ❌ YANLIŞ TIK
+document.body.onclick = () => {
+  loseCookies();
+};
+
+function loseCookies() {
+  if (cookies > 0) {
+    let lost = Math.floor(cookies * 0.1);
+    cookies -= lost;
+    message.innerText = "❌ Yanlış bastın! -" + lost;
+    update();
+    jumpscare();
+  }
+}
+
+function update() {
+  cookieText.innerText = "Kurabiye: " + cookies;
+
+  if (cookies >= 10) {
+    message.innerText = "Babaanne'nin Kurabiye Dükkanı Açıldı!";
+  }
+
+  if (cookies >= 1000000) {
+    title.innerText = "OYUN BİTTİ 🎉";
+  }
+}
+
+//////////////////////////////////////////////////
+// 📻 RADYO SİSTEMİ
+//////////////////////////////////////////////////
+
+function toggleMusic() {
+  if (!musicOn) {
+    music.play();
+    music.volume = 0.3;
+    musicOn = true;
+  } else {
+    music.pause();
+    musicOn = false;
+  }
+}
+
+//////////////////////////////////////////////////
+// 👵 JUMPSCARE + MÜZİK KESME
+//////////////////////////////////////////////////
+
+function jumpscare() {
+  let img = document.getElementById("jumpscare");
+
+  img.style.display = "flex";
+
+  // müziği durdur
+  if (musicOn) music.pause();
+
+  setTimeout(() => {
+    img.style.display = "none";
+
+    // geri başlat
+    if (musicOn) music.play();
+  }, 600);
+}
+
+//////////////////////////////////////////////////
+// 🍪 DÜKKAN
+//////////////////////////////////////////////////
+
+function buyChoco() {
+  if (cookies >= 50 && !types.choco) {
+    cookies -= 50;
+    clickPower = 2;
+    types.choco = true;
+    update();
+  }
+}
+
+function buyCaramel() {
+  if (cookies >= 200 && !types.caramel) {
+    cookies -= 200;
+    clickPower = 5;
+    types.caramel = true;
+    update();
+  }
+}
+
+function buyGolden() {
+  if (cookies >= 1000 && !types.golden) {
+    cookies -= 1000;
+    clickPower = 10;
+    types.golden = true;
+    update();
+  }
+}
+
+function buyMega() {
+  if (cookies >= 10000 && !types.mega) {
+    cookies -= 10000;
+    clickPower = 50;
+    types.mega = true;
+    update();
+  }
+}
+
+function buyLegendary() {
+  if (cookies >= 100000 && !types.legendary) {
+    cookies -= 100000;
+    clickPower = 500;
+    types.legendary = true;
+    update();
+  }
+}
+
+function buyAuto() {
+  if (cookies >= 500 && !auto) {
+    cookies -= 500;
+    auto = true;
+
+    setInterval(() => {
+      cookies += clickPower;
+      update();
+    }, 1000);
+  }
+}
